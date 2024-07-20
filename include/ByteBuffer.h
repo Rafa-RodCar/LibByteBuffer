@@ -34,14 +34,15 @@ public:
 
 private:
     std::vector<byte> buffer;
-    size_t pointer = 0;
-    size_t bufferSize;
-    size_t bufferActualSize;
+    size_t pointer          = 0;
+    size_t bufferSize       = 0;
+    size_t bufferActualSize = 0;
 
     void AppendBytes(const void* data, size_t size);
     void ExtractBytes(void* data, size_t size);
 
-    bool HasSpaceFor(size_t size) const { return pointer + size <= bufferSize; }
+    bool HasSpaceFor(size_t size) const { return pointer + size <= bufferSize;       }
+    bool HasBytesFor(size_t size) const { return pointer + size <= bufferActualSize; }
 };
 
 #include "../tpp/ByteBuffer.tpp"

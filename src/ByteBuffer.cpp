@@ -13,13 +13,15 @@ ByteBuffer::ByteBuffer(HeaderType header) {
     uint32_t headerValue = static_cast<uint32_t>(header);
     std::memcpy(buffer.data(), &headerValue, sizeof(headerValue));
     pointer += sizeof(headerValue);  // Mantener el puntero al inicio
+    bufferActualSize += sizeof(headerValue);
     std::cout << "Constructor: Writing header value: " << headerValue << std::endl;
 }
 
 void ByteBuffer::CopyTo(ByteBuffer& other) const {
     other.buffer = buffer;
-    other.pointer = 0;
+    other.ResetPointer();
     other.bufferSize = bufferSize;
+    other.bufferActualSize = bufferActualSize;
 }
 
 void ByteBuffer::ResetPointer() {

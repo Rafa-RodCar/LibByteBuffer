@@ -4,56 +4,69 @@
 #include "ByteBuffer.h"
 #include <cstring>
 #include <iostream>
+#include <string>
 
 template<typename T>
-ByteBuffer& ByteBuffer::operator<<(const T& data) {
+ByteBuffer& ByteBuffer::operator << (const T& data) {
+
     size_t dataSize = sizeof(T);
-    if (!HasSpaceFor(dataSize)) {
-        throw std::overflow_error("Buffer overflow");
-    }
-    std::cout << "Writing data of size " << dataSize << " at position " << pointer << std::endl;
-    AppendBytes(&data, dataSize);
+
+    if (HasSpaceFor(dataSize))
+        AppendBytes(&data, dataSize);
+    else // TODO: LogError
+        std::cout << "Error on: operator << (const T& data)" << std::endl;
+
     return *this;
 }
 
 template<typename T>
-ByteBuffer& ByteBuffer::operator>>(T& data) {
+ByteBuffer& ByteBuffer::operator >> (T& data) {
+
     size_t dataSize = sizeof(T);
-    if (pointer + dataSize > bufferSize) {
-        throw std::underflow_error("Buffer underflow");
-    }
-    std::cout << "Reading data of size " << dataSize << " from position " << pointer << std::endl;
-    ExtractBytes(&data, dataSize);
+    
+    if (HasBytesFor(dataSize))
+        ExtractBytes(&data, dataSize);
+    else // TODO: LogError
+        std::cout << "Error on: operator >> (T& data)" << std::endl;
+
     return *this;
 }
 
-inline ByteBuffer& ByteBuffer::operator<<(const std::string& data) {
+inline ByteBuffer& ByteBuffer::operator << (const std::string& data) {
+
     size_t length = data.size();
     size_t totalSize = sizeof(size_t) + length;
-    if (!HasSpaceFor(totalSize)) {
-        throw std::overflow_error("Buffer overflow");
+
+    if (HasSpaceFor(totalSize)) {
+
+        AppendBytes(&length, sizeof(size_t));
+        AppendBytes(data.data(), length);
     }
-    std::cout << "Writing string length " << length << " at position " << pointer << std::endl;
-    AppendBytes(&length, sizeof(size_t));
-    std::cout << "Writing string data of length " << length << " at position " << pointer << std::endl;
-    AppendBytes(data.data(), length);
+    else // TODO: LogError
+        std::cout << "Error on: operator << (const std::string& data)" << std::endl;
+
     return *this;
 }
 
-inline ByteBuffer& ByteBuffer::operator>>(std::string& data) {
+inline ByteBuffer& ByteBuffer::operator >> (std::string& data) {
+
     size_t length;
-    if (pointer + sizeof(size_t) > bufferSize) {
-        throw std::underflow_error("Buffer underflow when reading string length");
+
+    if (HasBytesFor(sizeof(size_t))) {
+
+        ExtractBytes(&length, sizeof(size_t));
+
+        if (HasBytesFor(length)) {
+
+            data.resize(length);
+            ExtractBytes(&data[0], length);
+        }
+        else // TODO: LogError
+            std::cout << "Error on: operator >> (std::string& data):length" << std::endl;
     }
-    std::cout << "Reading string length from position " << pointer << std::endl;
-    ExtractBytes(&length, sizeof(size_t));
-    std::cout << "String length read: " << length << std::endl;
-    if (pointer + length > bufferSize) {
-        throw std::underflow_error("Buffer underflow when reading string data");
-    }
-    data.resize(length);
-    std::cout << "Reading string data of length " << length << " from position " << pointer << std::endl;
-    ExtractBytes(&data[0], length);
+    else // TODO: LogError
+        std::cout << "Error on: operator >> (std::string& data):sizeof(size_t)" << std::endl;
+
     return *this;
 }
 
