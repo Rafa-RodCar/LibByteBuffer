@@ -163,4 +163,5 @@ CMakeFiles/ByteBuffer.dir/src/ByteBuffer.cpp.o: \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
  /home/rafael/Escritorio/Proyectos_CPP/ByteBuffer/include/../tpp/ByteBuffer.tpp \
- /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h
+ /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/c++/13/limits

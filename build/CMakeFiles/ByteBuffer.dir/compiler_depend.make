@@ -93,6 +93,7 @@ CMakeFiles/ByteBuffer.dir/src/ByteBuffer.cpp.o: /home/rafael/Escritorio/Proyecto
   /usr/include/c++/13/iosfwd \
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
+  /usr/include/c++/13/limits \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/stdexcept \
@@ -426,6 +427,10 @@ CMakeFiles/ByteBuffer.dir/src/ByteBuffer.cpp.o: /home/rafael/Escritorio/Proyecto
 
 /usr/include/c++/13/bits/invoke.h:
 
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/c++/13/bits/basic_string.h:
+
 /usr/include/stdc-predef.h:
 
 /usr/include/c++/13/bits/localefwd.h:
@@ -542,6 +547,8 @@ CMakeFiles/ByteBuffer.dir/src/ByteBuffer.cpp.o: /home/rafael/Escritorio/Proyecto
 
 /usr/include/c++/13/initializer_list:
 
+/usr/include/c++/13/limits:
+
 /usr/include/c++/13/ext/alloc_traits.h:
 
 /usr/include/c++/13/new:
@@ -607,7 +614,3 @@ CMakeFiles/ByteBuffer.dir/src/ByteBuffer.cpp.o: /home/rafael/Escritorio/Proyecto
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
-
-/usr/include/c++/13/bits/basic_string.h:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:

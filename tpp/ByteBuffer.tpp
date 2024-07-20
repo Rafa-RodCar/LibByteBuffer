@@ -5,6 +5,7 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include <limits>
 
 template<typename T>
 ByteBuffer& ByteBuffer::operator << (const T& data) {
@@ -35,12 +36,18 @@ ByteBuffer& ByteBuffer::operator >> (T& data) {
 inline ByteBuffer& ByteBuffer::operator << (const std::string& data) {
 
     size_t length = data.size();
-    size_t totalSize = sizeof(size_t) + length;
 
-    if (HasSpaceFor(totalSize)) {
+    if (length < std::numeric_limits<uint16_t>::max()) {
 
-        AppendBytes(&length, sizeof(size_t));
-        AppendBytes(data.data(), length);
+        size_t totalSize = sizeof(uint16_t) + length;
+
+        if (HasSpaceFor(totalSize)) {
+
+            AppendBytes(&length, sizeof(uint16_t));
+            AppendBytes(data.data(), length);
+        }
+        else // TODO: LogError
+            std::cout << "Error on: operator << (const std::string& data)" << std::endl;
     }
     else // TODO: LogError
         std::cout << "Error on: operator << (const std::string& data)" << std::endl;
@@ -50,11 +57,11 @@ inline ByteBuffer& ByteBuffer::operator << (const std::string& data) {
 
 inline ByteBuffer& ByteBuffer::operator >> (std::string& data) {
 
-    size_t length;
+    uint16_t length;
 
-    if (HasBytesFor(sizeof(size_t))) {
+    if (HasBytesFor(sizeof(uint16_t))) {
 
-        ExtractBytes(&length, sizeof(size_t));
+        ExtractBytes(&length, sizeof(uint16_t));
 
         if (HasBytesFor(length)) {
 

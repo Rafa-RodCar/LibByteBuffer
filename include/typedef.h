@@ -35,9 +35,9 @@ typedef enum BufferSize : uint16_t {
 } BUFFER_SIZE;
 
 const std::unordered_map<HeaderType, BufferSize> headerSizeMap = {
-    {HEADER_1,  SIZE_512}, 
-    {HEADER_2,  SIZE_512}, 
-    {HEADER_3,  SIZE_512}, 
+    {HEADER_1,  SIZE_16}, 
+    {HEADER_2,  SIZE_32}, 
+    {HEADER_3,  SIZE_64}, 
     {HEADER_4,  SIZE_128},
     {HEADER_5,  SIZE_256}, 
     {HEADER_6,  SIZE_512}, 
