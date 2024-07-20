@@ -13,16 +13,14 @@ public:
 
     template<typename T>
     ByteBuffer& operator<<(const T& data);
-
     ByteBuffer& operator<<(const std::string& data);
 
     template<typename T>
     ByteBuffer& operator>>(T& data);
-
     ByteBuffer& operator>>(std::string& data);
 
-    void CopyTo(ByteBuffer& other) const;
     void ResetPointer();
+    void CopyTo(ByteBuffer& other) const;
 
     size_t GetSize() const { return bufferSize; }
     size_t GetPointerPosition() const { return pointer; }
@@ -38,6 +36,7 @@ private:
     std::vector<byte> buffer;
     size_t pointer = 0;
     size_t bufferSize;
+    size_t bufferActualSize;
 
     void AppendBytes(const void* data, size_t size);
     void ExtractBytes(void* data, size_t size);

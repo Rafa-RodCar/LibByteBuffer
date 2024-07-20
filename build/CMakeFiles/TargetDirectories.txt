@@ -1,0 +1,3 @@
+/home/rafael/Escritorio/Proyectos_CPP/ByteBuffer/build/CMakeFiles/ByteBuffer.dir
+/home/rafael/Escritorio/Proyectos_CPP/ByteBuffer/build/CMakeFiles/edit_cache.dir
+/home/rafael/Escritorio/Proyectos_CPP/ByteBuffer/build/CMakeFiles/rebuild_cache.dir
