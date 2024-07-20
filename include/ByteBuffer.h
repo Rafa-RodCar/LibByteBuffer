@@ -21,9 +21,12 @@ public:
 
     void ResetPointer();
     void CopyTo(ByteBuffer& other) const;
+    void SaveActualSize();
+    void SaveStatus(size_t size, bool bSaveActualSize = false);
 
-    size_t GetSize() const { return bufferSize; }
-    size_t GetPointerPosition() const { return pointer; }
+    size_t GetPointer()          const { return pointer; }
+    size_t GetBufferSize()       const { return bufferSize; }
+    size_t GetBufferActualSize() const { return bufferActualSize; }
 
     byte GetByte(size_t index) const { 
         if (index >= bufferSize) {
@@ -31,6 +34,8 @@ public:
         }
         return buffer[index]; 
     }
+
+    size_t GetSize() const { return bufferSize; } 
 
 private:
     std::vector<byte> buffer;
