@@ -28,6 +28,7 @@ public:
     size_t GetBufferSize()       const { return bufferSize; }
     size_t GetBufferActualSize() const { return bufferActualSize; }
 
+    // TODO: Eliminar después de terminar las pruebas
     byte GetByte(size_t index) const { 
         if (index >= bufferSize) {
             throw std::out_of_range("Index out of range");
@@ -35,7 +36,7 @@ public:
         return buffer[index]; 
     }
 
-    size_t GetSize() const { return bufferSize; } 
+    std::vector<byte> GetBuffer() const { return buffer; }
 
 private:
     std::vector<byte> buffer;

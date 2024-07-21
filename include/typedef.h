@@ -7,7 +7,7 @@
 
 typedef uint8_t byte;
 
-typedef enum HeaderType : uint32_t {
+typedef enum HeaderType : uint16_t {
     HEADER_1, 
     HEADER_2, 
     HEADER_3, 
