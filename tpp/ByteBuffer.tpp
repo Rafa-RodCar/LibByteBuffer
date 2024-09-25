@@ -14,7 +14,7 @@ ByteBuffer& ByteBuffer::operator << (const T& data) {
 
     if (HasSpaceFor(dataSize))
         AppendBytes(&data, dataSize);
-    else // TODO: LogError
+    else // TODO: LogInfo
         std::cout << "Error on: operator << (const T& data)" << std::endl;
 
     return *this;
@@ -27,7 +27,7 @@ ByteBuffer& ByteBuffer::operator >> (T& data) {
     
     if (HasBytesFor(dataSize))
         ExtractBytes(&data, dataSize);
-    else // TODO: LogError
+    else // TODO: LogInfo
         std::cout << "Error on: operator >> (T& data)" << std::endl;
 
     return *this;
@@ -46,10 +46,10 @@ inline ByteBuffer& ByteBuffer::operator << (const std::string& data) {
             AppendBytes(&length, sizeof(uint16_t));
             AppendBytes(data.data(), length);
         }
-        else // TODO: LogError
+        else // TODO: LogInfo
             std::cout << "Error on: operator << (const std::string& data)" << std::endl;
     }
-    else // TODO: LogError
+    else // TODO: LogInfo
         std::cout << "Error on: operator << (const std::string& data)" << std::endl;
 
     return *this;
@@ -68,10 +68,10 @@ inline ByteBuffer& ByteBuffer::operator >> (std::string& data) {
             data.resize(length);
             ExtractBytes(&data[0], length);
         }
-        else // TODO: LogError
+        else // TODO: LogInfo
             std::cout << "Error on: operator >> (std::string& data):length" << std::endl;
     }
-    else // TODO: LogError
+    else // TODO: LogInfo
         std::cout << "Error on: operator >> (std::string& data):sizeof(size_t)" << std::endl;
 
     return *this;

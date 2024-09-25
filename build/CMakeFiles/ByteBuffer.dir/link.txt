@@ -1,2 +1,0 @@
-/usr/bin/ar qc libByteBuffer.a CMakeFiles/ByteBuffer.dir/src/ByteBuffer.cpp.o
-/usr/bin/ranlib libByteBuffer.a
